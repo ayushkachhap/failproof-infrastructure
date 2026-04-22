@@ -15,6 +15,6 @@ resource "multipass_instance" "portfolio_node" {
 }
 
 output "node_ip_addresses" {
-  description = "The IPs of the provisioned nodes"
-  value       = multipass_instance.portfolio_node[*].ipv4_address
+  description = "A map of node names to their IP addresses"
+  value       = { for node in multipass_instance.portfolio_node : node.name => node.ipv4 }
 }
