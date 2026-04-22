@@ -1,7 +1,7 @@
 variable "node_count" {
   description = "The number of instances to deploy for high availability"
   type        = number
-  default     = 5
+  default     = 2
 }
 
 variable "memory_limit" {
