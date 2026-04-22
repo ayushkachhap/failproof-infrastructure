@@ -20,4 +20,6 @@ users:
 ssh_pwauth: false
 
 runcmd:
-  - echo "Hardening complete. Node ready for clustering." >> /var/log/node-bootstrap.log
+  # Install K3s (Lightweight Kubernetes)
+  - curl -sfL https://get.k3s.io | sh -
+  - echo "Hardening complete. K3s installed and node ready for clustering." >> /var/log/node-bootstrap.log
