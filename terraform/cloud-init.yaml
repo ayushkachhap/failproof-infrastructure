@@ -23,3 +23,7 @@ runcmd:
   # Install K3s (Lightweight Kubernetes)
   - curl -sfL https://get.k3s.io | sh -
   - echo "Hardening complete. K3s installed and node ready for clustering." >> /var/log/node-bootstrap.log
+
+  #Install Nginx web server
+  - apt-get install -y nginx
+  - echo "Hardening complete and Web Server running." >> /var/log/node-bootstrap.log
