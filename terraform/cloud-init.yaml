@@ -1,0 +1,23 @@
+# cloud-init.yaml
+# Security Hardening & Bootstrapping
+package_update: true
+package_upgrade: true
+
+users:
+  - default
+  - name: deployment-admin
+    gecos: Deployment Administrator
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users, admin
+    shell: /bin/bash
+    lock_passwd: true
+    ssh_authorized_keys:
+      # Replace this with your Mac's actual public SSH key (found in ~/.ssh/id_rsa.pub)
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEDrNGx2vV4LIKA9MVITIgs4kknVt0FiXvNMze0wcBaV justinwebsurfing@gmail.com
+
+
+# Disable basic password authentication to force SSH key usage
+ssh_pwauth: false
+
+runcmd:
+  - echo "Hardening complete. Node ready for clustering." >> /var/log/node-bootstrap.log

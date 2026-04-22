@@ -1,0 +1,29 @@
+name: Infrastructure Policy as Code Gatekeeper
+
+# 1. The Triggers: When does this run?
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# 2. The Jobs: What does it do?
+jobs:
+  security-scan:
+    name: Checkov Security Scan
+    runs-on: ubuntu-latest # Runs on a fresh GitHub-hosted cloud server
+
+    steps:
+      # Step A: Download your code into the runner
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step B: Run the official Checkov GitHub Action
+      - name: Run Checkov against Infrastructure
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: terraform/
+          external_checks_dir: policies/
+          framework: terraform
+          # This ensures the pipeline FAILS if a policy is violated
+          soft_fail: false

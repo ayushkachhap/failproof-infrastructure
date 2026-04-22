@@ -1,0 +1,10 @@
+metadata:
+  name: "Ensure Multipass instances use cloud-init for security hardening"
+  id: "CKV_CUSTOM_1"
+  category: "GENERAL_SECURITY"
+definition:
+  cond_type: "attribute"
+  resource_types:
+    - "multipass_instance"
+  attribute: "cloudinit_file"
+  operator: "exists"
