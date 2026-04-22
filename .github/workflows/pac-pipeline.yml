@@ -7,10 +7,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-# Fix for Warning 1: Force GitHub to use the future-proof Node.js version
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 # 2. The Jobs
 jobs:
   security-scan:
